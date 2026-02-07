@@ -20,12 +20,18 @@ const currentPath = normalize(pathname);
     <a href={withBase(locale === "it" ? "/" : "/en")} class="brand" aria-label={SITE_NAME}>{SITE_NAME}</a>
     <nav aria-label={text.navLabel} class="main-nav">
       {navItems.map((item) => (
-        <a href={withBase(item.href)} class:list={{ active: currentPath === normalize(withBase(item.href)) }}>{item.label}</a>
+        <a
+          href={withBase(item.href)}
+          aria-current={currentPath === normalize(withBase(item.href)) ? "page" : undefined}
+          class:list={{ active: currentPath === normalize(withBase(item.href)) }}
+        >
+          {item.label}
+        </a>
       ))}
     </nav>
     <div class="header-actions">
       <a class="lang-switch" href={withBase(text.langHref)}>{text.langSwitch}</a>
-      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme" aria-pressed="false">
         <span aria-hidden="true">◐</span>
       </button>
     </div>

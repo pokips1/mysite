@@ -23,7 +23,7 @@ const seo = createSeo({
   </section>
 
   <section class="container" data-reveal>
-    <div class="project-list">
+    <div class="project-list" data-stagger>
       {projects.map((project) => <ProjectCard locale={locale} project={project} />)}
     </div>
   </section>

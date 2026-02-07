@@ -14,6 +14,7 @@ interface Props {
 const { locale, seo } = Astro.props;
 const pathname = Astro.url.pathname;
 const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN;
+const ogLocale = locale === "it" ? "it_IT" : "en_US";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -31,14 +32,19 @@ const structuredData = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content={SITE_NAME} />
     <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <meta name="theme-color" content="#0f766e" />
     <title>{seo.title}</title>
     <meta name="description" content={seo.description} />
     <link rel="canonical" href={seo.canonical} />
-    {seo.noindex && <meta name="robots" content="noindex,nofollow" />}
+    <meta name="robots" content={seo.noindex ? "noindex,nofollow" : "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"} />
 
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:title" content={seo.title} />
     <meta property="og:description" content={seo.description} />
     <meta property="og:url" content={seo.canonical} />
@@ -67,8 +73,9 @@ const structuredData = {
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#content">Skip to content</a>
     <Header locale={locale} pathname={pathname} />
-    <main>
+    <main id="content">
       <slot />
     </main>
     <Footer locale={locale} />
@@ -77,16 +84,32 @@ const structuredData = {
       (() => {
         const toggle = document.querySelector("[data-theme-toggle]");
         if (toggle) {
+          const syncToggleState = () => {
+            const isDark = document.documentElement.dataset.theme === "dark";
+            toggle.setAttribute("aria-pressed", String(isDark));
+          };
+
           toggle.addEventListener("click", () => {
             const current = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
             const next = current === "dark" ? "light" : "dark";
             document.documentElement.dataset.theme = next;
             localStorage.setItem("theme", next);
+            syncToggleState();
           });
+
+          syncToggleState();
         }
 
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (!reduceMotion) {
+          const staggerGroups = document.querySelectorAll("[data-stagger]");
+          staggerGroups.forEach((group) => {
+            const children = group.querySelectorAll("[data-reveal]");
+            children.forEach((child, index) => {
+              child.style.setProperty("--reveal-delay", `${index * 90}ms`);
+            });
+          });
+
           const reveals = document.querySelectorAll("[data-reveal]");
           const io = new IntersectionObserver(
             (entries) => {

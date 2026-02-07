@@ -14,6 +14,23 @@ const seo = createSeo({
   description: "Contattami su WhatsApp o email per ricevere una proposta per il tuo nuovo sito web statico.",
   alternates: { it: "/contattami", en: "/en/contact" }
 });
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Tempi medi",
+      acceptedAnswer: { "@type": "Answer", text: "Da 5 a 15 giorni lavorativi, in base alla complessita del progetto." }
+    },
+    {
+      "@type": "Question",
+      name: "Prezzo",
+      acceptedAnswer: { "@type": "Answer", text: "I progetti partono da 600 EUR, con preventivo calibrato su obiettivi e scope." }
+    }
+  ]
+};
 ---
 <BaseLayout locale={locale} seo={seo}>
   <section class="container hero" data-reveal>
@@ -24,8 +41,13 @@ const seo = createSeo({
 
   <section class="container card" data-reveal>
     <h2>{text.faqTitle}</h2>
-    <p><strong>Tempi medi:</strong> da 5 a 15 giorni lavorativi, in base alla complessita.</p>
-    <p><strong>Prezzo:</strong> progetti a partire da 600 EUR, con preventivo su obiettivi e scope.</p>
+    <dl>
+      <dt><strong>Tempi medi</strong></dt>
+      <dd>Da 5 a 15 giorni lavorativi, in base alla complessita.</dd>
+      <dt><strong>Prezzo</strong></dt>
+      <dd>Progetti a partire da 600 EUR, con preventivo su obiettivi e scope.</dd>
+    </dl>
     <p><strong>Email diretta:</strong> <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
   </section>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
 </BaseLayout>

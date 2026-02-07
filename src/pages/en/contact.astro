@@ -14,6 +14,23 @@ const seo = createSeo({
   description: "Get in touch via WhatsApp or email and receive a concrete website proposal.",
   alternates: { it: "/contattami", en: "/en/contact" }
 });
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Typical timeline",
+      acceptedAnswer: { "@type": "Answer", text: "Projects usually take 5 to 15 working days, depending on scope." }
+    },
+    {
+      "@type": "Question",
+      name: "Pricing",
+      acceptedAnswer: { "@type": "Answer", text: "Pricing starts from EUR 600 and is defined according to business goals." }
+    }
+  ]
+};
 ---
 <BaseLayout locale={locale} seo={seo}>
   <section class="container hero" data-reveal>
@@ -24,8 +41,13 @@ const seo = createSeo({
 
   <section class="container card" data-reveal>
     <h2>{text.faqTitle}</h2>
-    <p><strong>Typical timeline:</strong> 5 to 15 working days depending on project scope.</p>
-    <p><strong>Pricing:</strong> projects start from EUR 600 based on business goals.</p>
+    <dl>
+      <dt><strong>Typical timeline</strong></dt>
+      <dd>5 to 15 working days depending on project scope.</dd>
+      <dt><strong>Pricing</strong></dt>
+      <dd>Projects start from EUR 600 based on business goals.</dd>
+    </dl>
     <p><strong>Direct email:</strong> <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
   </section>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
 </BaseLayout>

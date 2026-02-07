@@ -11,7 +11,8 @@ const seo = createSeo({
   path: "/404",
   title: "Pagina non trovata",
   description: "La pagina richiesta non e disponibile.",
-  alternates: { it: "/", en: "/en" }
+  alternates: { it: "/", en: "/en" },
+  noindex: true
 });
 ---
 <BaseLayout locale={locale} seo={seo}>

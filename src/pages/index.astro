@@ -29,7 +29,7 @@ const seo = createSeo({
 
   <section class="container" data-reveal>
     <h2>{text.servicesTitle}</h2>
-    <div class="grid grid-3">
+    <div class="grid grid-3" data-stagger>
       <article class="card"><h3>Landing Page</h3><p>Pagine veloci per promuovere servizi, eventi e lanci prodotto.</p></article>
       <article class="card"><h3>Siti vetrina</h3><p>Presenza online professionale con architettura chiara e orientata ai contatti.</p></article>
       <article class="card"><h3>Restyling</h3><p>Miglioro design, prestazioni e SEO tecnica di siti esistenti.</p></article>
@@ -38,7 +38,7 @@ const seo = createSeo({
 
   <section class="container" data-reveal>
     <h2>{text.benefitsTitle}</h2>
-    <div class="grid grid-3">
+    <div class="grid grid-3" data-stagger>
       <article class="card"><h3>Velocita reale</h3><p>Asset ottimizzati e codice essenziale per caricamenti rapidi.</p></article>
       <article class="card"><h3>SEO-ready</h3><p>Meta ottimizzati, semantica corretta e struttura tecnica pulita.</p></article>
       <article class="card"><h3>Facile manutenzione</h3><p>Architettura scalabile per aggiornare pagine e portfolio rapidamente.</p></article>
@@ -47,7 +47,7 @@ const seo = createSeo({
 
   <section class="container" data-reveal>
     <h2>{text.processTitle}</h2>
-    <div class="grid grid-3">
+    <div class="grid grid-3" data-stagger>
       <article class="card"><h3>1. Brief</h3><p>Definiamo obiettivi, target e tono comunicativo.</p></article>
       <article class="card"><h3>2. Design + sviluppo</h3><p>Costruisco un sito moderno, responsive e performante.</p></article>
       <article class="card"><h3>3. Lancio</h3><p>Pubblicazione, SEO tecnica e monitoraggio conversioni.</p></article>
@@ -56,7 +56,7 @@ const seo = createSeo({
 
   <section class="container" data-reveal>
     <h2>{text.latestProjects}</h2>
-    <div class="project-list">
+    <div class="project-list" data-stagger>
       {projects.map((project) => <ProjectCard locale={locale} project={project} />)}
     </div>
     <p><a class="btn btn-link" href={withBase("/progetti")}>{text.viewAllProjects}</a></p>
