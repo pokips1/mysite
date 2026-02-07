@@ -2,6 +2,7 @@
 import type { Locale } from "../types/site";
 import { NAV, SITE_NAME } from "../config/site";
 import { t } from "../i18n/ui";
+import { withBase } from "../config/links";
 
 interface Props {
   locale: Locale;
@@ -11,19 +12,21 @@ interface Props {
 const { locale, pathname } = Astro.props;
 const text = t(locale);
 const navItems = NAV[locale];
+const normalize = (value: string) => value.replace(/\/+$/, "") || "/";
+const currentPath = normalize(pathname);
 ---
 <header class="site-header">
   <div class="container header-inner">
-    <a href={locale === "it" ? "/" : "/en"} class="brand" aria-label={SITE_NAME}>{SITE_NAME}</a>
+    <a href={withBase(locale === "it" ? "/" : "/en")} class="brand" aria-label={SITE_NAME}>{SITE_NAME}</a>
     <nav aria-label={text.navLabel} class="main-nav">
       {navItems.map((item) => (
-        <a href={item.href} class:list={{ active: pathname === item.href }}>{item.label}</a>
+        <a href={withBase(item.href)} class:list={{ active: currentPath === normalize(withBase(item.href)) }}>{item.label}</a>
       ))}
     </nav>
     <div class="header-actions">
-      <a class="lang-switch" href={text.langHref}>{text.langSwitch}</a>
+      <a class="lang-switch" href={withBase(text.langHref)}>{text.langSwitch}</a>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
-        <span aria-hidden="true">?</span>
+        <span aria-hidden="true">◐</span>
       </button>
     </div>
   </div>

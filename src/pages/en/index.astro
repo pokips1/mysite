@@ -5,6 +5,7 @@ import CtaButtons from "../../components/CtaButtons.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 import { t } from "../../i18n/ui";
 import { createSeo } from "../../config/seo";
+import { withBase } from "../../config/links";
 
 const locale = "en" as const;
 const text = t(locale);
@@ -39,6 +40,6 @@ const seo = createSeo({
     <div class="project-list">
       {projects.map((project) => <ProjectCard locale={locale} project={project} />)}
     </div>
-    <p><a class="btn btn-link" href="/en/projects">{text.viewAllProjects}</a></p>
+    <p><a class="btn btn-link" href={withBase("/en/projects")}>{text.viewAllProjects}</a></p>
   </section>
 </BaseLayout>

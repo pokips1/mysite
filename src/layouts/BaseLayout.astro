@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import type { Locale, SeoMeta } from "../types/site";
 import { SITE_NAME, SITE_TAGLINE, CONTACT } from "../config/site";
-import { toAbsoluteUrl } from "../config/links";
+import { toAbsoluteUrl, withBase } from "../config/links";
 
 interface Props {
   locale: Locale;
@@ -30,7 +30,9 @@ const structuredData = {
 <html lang={locale}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />`n    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />`n    <meta name="theme-color" content="#0f766e" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href={withBase("/favicon.svg")} />
+    <meta name="theme-color" content="#0f766e" />
     <title>{seo.title}</title>
     <meta name="description" content={seo.description} />
     <link rel="canonical" href={seo.canonical} />

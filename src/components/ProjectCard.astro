@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import type { Locale } from "../types/site";
 import { t } from "../i18n/ui";
+import { withBase } from "../config/links";
 
 interface Props {
   locale: Locale;
@@ -13,7 +14,7 @@ const text = t(locale);
 const { title, summary, sector, tech, cover, liveUrl, results } = project.data;
 ---
 <article class="project-card" data-reveal>
-  <img src={cover} alt={title} loading="lazy" width="1200" height="700" />
+  <img src={withBase(cover)} alt={title} loading="lazy" width="1200" height="700" />
   <div class="project-body">
     <h3>{title}</h3>
     <p>{summary}</p>
