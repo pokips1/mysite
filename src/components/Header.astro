@@ -1,0 +1,30 @@
+---
+import type { Locale } from "../types/site";
+import { NAV, SITE_NAME } from "../config/site";
+import { t } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  pathname: string;
+}
+
+const { locale, pathname } = Astro.props;
+const text = t(locale);
+const navItems = NAV[locale];
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a href={locale === "it" ? "/" : "/en"} class="brand" aria-label={SITE_NAME}>{SITE_NAME}</a>
+    <nav aria-label={text.navLabel} class="main-nav">
+      {navItems.map((item) => (
+        <a href={item.href} class:list={{ active: pathname === item.href }}>{item.label}</a>
+      ))}
+    </nav>
+    <div class="header-actions">
+      <a class="lang-switch" href={text.langHref}>{text.langSwitch}</a>
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme">
+        <span aria-hidden="true">?</span>
+      </button>
+    </div>
+  </div>
+</header>

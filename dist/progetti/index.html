@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="it"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/_astro/chi-sono.B3Sj2KBq.css"></head>`n <link rel="icon" type="image/svg+xml" href="/favicon.svg">`n <meta name="theme-color" content="#0f766e"> <title>Progetti | Mario Rossi</title> <meta name="description" content="Portfolio di siti web statici: stack, obiettivi e risultati misurabili."> <link rel="canonical" href="https://pokips1.github.io/progetti">  <meta property="og:type" content="website"> <meta property="og:title" content="Progetti | Mario Rossi"> <meta property="og:description" content="Portfolio di siti web statici: stack, obiettivi e risultati misurabili."> <meta property="og:url" content="https://pokips1.github.io/progetti"> <meta property="og:image" content="https://pokips1.github.io/og-default.svg"> <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:title" content="Progetti | Mario Rossi"> <meta name="twitter:description" content="Portfolio di siti web statici: stack, obiettivi e risultati misurabili."> <meta name="twitter:image" content="https://pokips1.github.io/og-default.svg"> <link rel="alternate" hreflang="it" href="https://pokips1.github.io/progetti"> <link rel="alternate" hreflang="en" href="https://pokips1.github.io/en/projects"> <link rel="alternate" hreflang="x-default" href="https://pokips1.github.io/progetti"> <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Mario Rossi","description":"Siti web statici moderni, veloci e orientati alla conversione","areaServed":"Italy","serviceType":"Web design and static website development","email":"ciao@example.com","url":"https://pokips1.github.io/"}</script>  <script>
+      (() => {
+        const stored = localStorage.getItem("theme");
+        const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = stored === "light" || stored === "dark" ? stored : systemDark ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>  <header class="site-header"> <div class="container header-inner"> <a href="/" class="brand" aria-label="Mario Rossi">Mario Rossi</a> <nav aria-label="Navigazione principale" class="main-nav"> <a href="/">Home</a><a href="/chi-sono">Chi sono</a><a href="/progetti">Progetti</a><a href="/contattami">Contattami</a> </nav> <div class="header-actions"> <a class="lang-switch" href="/en">English</a> <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme"> <span aria-hidden="true">?</span> </button> </div> </div> </header> <main>  <section class="container hero" data-reveal> <h1>Progetti</h1> <p>Ogni progetto mostra obiettivi, stack e risultato. Aggiungere nuovi lavori richiede solo un nuovo record.</p> </section> <section class="container" data-reveal> <div class="project-list"> <article class="project-card" data-reveal> <img src="/projects/creative.svg" alt="Greenline Studio" loading="lazy" width="1200" height="700"> <div class="project-body"> <h3>Greenline Studio</h3> <p>Portfolio per studio creativo con focus su storytelling visuale.</p> <ul class="meta-list"> <li><strong>Settore:</strong> Creative</li> <li><strong>Stack:</strong> Astro, TypeScript, CSS</li> <li><strong>Risultato:</strong> Miglioramento Core Web Vitals e permanenza utenti piu alta.</li> </ul> <a class="btn btn-link" href="https://example.com/creative" target="_blank" rel="noopener noreferrer">Visita sito</a> </div> </article><article class="project-card" data-reveal> <img src="/projects/garage.svg" alt="Officina Delta" loading="lazy" width="1200" height="700"> <div class="project-body"> <h3>Officina Delta</h3> <p>Landing multiservizio con CTA rapide e struttura orientata alla conversione.</p> <ul class="meta-list"> <li><strong>Settore:</strong> Automotive</li> <li><strong>Stack:</strong> Vite, HTML, CSS</li> <li><strong>Risultato:</strong> Incremento conversioni del 31% nel primo mese.</li> </ul> <a class="btn btn-link" href="https://example.com/garage" target="_blank" rel="noopener noreferrer">Visita sito</a> </div> </article><article class="project-card" data-reveal> <img src="/projects/legal.svg" alt="Studio Legale Ferri" loading="lazy" width="1200" height="700"> <div class="project-body"> <h3>Studio Legale Ferri</h3> <p>Sito vetrina istituzionale con focus su credibilita e acquisizione contatti locali.</p> <ul class="meta-list"> <li><strong>Settore:</strong> Servizi legali</li> <li><strong>Stack:</strong> Astro, CSS, JavaScript</li> <li><strong>Risultato:</strong> Tempo medio pagina ridotto del 52% e aumento richieste da mobile.</li> </ul> <a class="btn btn-link" href="https://example.com/legal" target="_blank" rel="noopener noreferrer">Visita sito</a> </div> </article> </div> </section>  </main> <footer class="site-footer"> <div class="container footer-inner"> <p>Siti statici ad alte prestazioni per professionisti e PMI.</p> <p>&copy; 2026 Mario Rossi</p> </div> </footer> <script>
+      (() => {
+        const toggle = document.querySelector("[data-theme-toggle]");
+        if (toggle) {
+          toggle.addEventListener("click", () => {
+            const current = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+            const next = current === "dark" ? "light" : "dark";
+            document.documentElement.dataset.theme = next;
+            localStorage.setItem("theme", next);
+          });
+        }
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!reduceMotion) {
+          const reveals = document.querySelectorAll("[data-reveal]");
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12 }
+          );
+          reveals.forEach((el) => io.observe(el));
+        }
+
+        const ctas = document.querySelectorAll("[data-cta]");
+        ctas.forEach((el) => {
+          el.addEventListener("click", () => {
+            const eventName = `cta_${el.getAttribute("data-cta")}_click`;
+            if (typeof window.plausible === "function") {
+              window.plausible(eventName);
+            }
+          });
+        });
+      })();
+    </script> </html> 

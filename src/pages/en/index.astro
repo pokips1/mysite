@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CtaButtons from "../../components/CtaButtons.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { t } from "../../i18n/ui";
+import { createSeo } from "../../config/seo";
+
+const locale = "en" as const;
+const text = t(locale);
+const projects = (await getCollection("projects", ({ data }) => data.lang === "en" && data.featured)).slice(0, 3);
+const seo = createSeo({
+  locale,
+  path: "/en",
+  title: "Modern static websites for professionals",
+  description: "I build websites with HTML, CSS, JavaScript, Astro and Vite focused on speed, design and SEO.",
+  alternates: { it: "/", en: "/en" }
+});
+---
+<BaseLayout locale={locale} seo={seo}>
+  <section class="container hero" data-reveal>
+    <span class="kicker">{text.heroKicker}</span>
+    <h1>{text.homeTitle}</h1>
+    <p>{text.homeLead}</p>
+    <CtaButtons locale={locale} />
+  </section>
+
+  <section class="container" data-reveal>
+    <h2>{text.servicesTitle}</h2>
+    <div class="grid grid-3">
+      <article class="card"><h3>Landing Pages</h3><p>Fast pages built for launches, campaigns and lead generation.</p></article>
+      <article class="card"><h3>Business Websites</h3><p>Clear and professional web presence for your services.</p></article>
+      <article class="card"><h3>Website Redesign</h3><p>Upgrade visuals, speed and technical SEO of existing sites.</p></article>
+    </div>
+  </section>
+
+  <section class="container" data-reveal>
+    <h2>{text.latestProjects}</h2>
+    <div class="project-list">
+      {projects.map((project) => <ProjectCard locale={locale} project={project} />)}
+    </div>
+    <p><a class="btn btn-link" href="/en/projects">{text.viewAllProjects}</a></p>
+  </section>
+</BaseLayout>

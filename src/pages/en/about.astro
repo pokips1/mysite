@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import CtaButtons from "../../components/CtaButtons.astro";
+import { t } from "../../i18n/ui";
+import { createSeo } from "../../config/seo";
+
+const locale = "en" as const;
+const text = t(locale);
+const seo = createSeo({
+  locale,
+  path: "/en/about",
+  title: "About",
+  description: "Profile, workflow and technical approach to build high-performing static websites.",
+  alternates: { it: "/chi-sono", en: "/en/about" }
+});
+---
+<BaseLayout locale={locale} seo={seo}>
+  <section class="container hero" data-reveal>
+    <h1>{text.aboutTitle}</h1>
+    <p>{text.aboutLead}</p>
+  </section>
+
+  <section class="container" data-reveal>
+    <div class="grid grid-3">
+      <article class="card"><h2>Approach</h2><p>Every page is planned around one measurable business objective.</p></article>
+      <article class="card"><h2>Stack</h2><p>HTML, CSS, JavaScript, Astro and Vite for maintainable static builds.</p></article>
+      <article class="card"><h2>Delivery</h2><p>Lean process, clear communication and iterative releases.</p></article>
+    </div>
+  </section>
+
+  <section class="container card" data-reveal>
+    <h2>Work together</h2>
+    <p>I keep the process simple and fast, so you can launch with confidence and measurable outcomes.</p>
+    <CtaButtons locale={locale} />
+  </section>
+</BaseLayout>

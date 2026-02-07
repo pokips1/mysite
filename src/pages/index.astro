@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CtaButtons from "../components/CtaButtons.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { t } from "../i18n/ui";
+import { createSeo } from "../config/seo";
+
+const locale = "it" as const;
+const text = t(locale);
+const projects = (await getCollection("projects", ({ data }) => data.lang === "it" && data.featured)).slice(0, 3);
+
+const seo = createSeo({
+  locale,
+  path: "/",
+  title: "Siti web statici moderni per professionisti",
+  description: "Creo siti in HTML, CSS, JavaScript, Astro e Vite con design moderno, performance elevate e SEO ottimizzata.",
+  alternates: { it: "/", en: "/en" }
+});
+---
+<BaseLayout locale={locale} seo={seo}>
+  <section class="container hero" data-reveal>
+    <span class="kicker">{text.heroKicker}</span>
+    <h1>{text.homeTitle}</h1>
+    <p>{text.homeLead}</p>
+    <CtaButtons locale={locale} />
+  </section>
+
+  <section class="container" data-reveal>
+    <h2>{text.servicesTitle}</h2>
+    <div class="grid grid-3">
+      <article class="card"><h3>Landing Page</h3><p>Pagine veloci per promuovere servizi, eventi e lanci prodotto.</p></article>
+      <article class="card"><h3>Siti vetrina</h3><p>Presenza online professionale con architettura chiara e orientata ai contatti.</p></article>
+      <article class="card"><h3>Restyling</h3><p>Miglioro design, prestazioni e SEO tecnica di siti esistenti.</p></article>
+    </div>
+  </section>
+
+  <section class="container" data-reveal>
+    <h2>{text.benefitsTitle}</h2>
+    <div class="grid grid-3">
+      <article class="card"><h3>Velocita reale</h3><p>Asset ottimizzati e codice essenziale per caricamenti rapidi.</p></article>
+      <article class="card"><h3>SEO-ready</h3><p>Meta ottimizzati, semantica corretta e struttura tecnica pulita.</p></article>
+      <article class="card"><h3>Facile manutenzione</h3><p>Architettura scalabile per aggiornare pagine e portfolio rapidamente.</p></article>
+    </div>
+  </section>
+
+  <section class="container" data-reveal>
+    <h2>{text.processTitle}</h2>
+    <div class="grid grid-3">
+      <article class="card"><h3>1. Brief</h3><p>Definiamo obiettivi, target e tono comunicativo.</p></article>
+      <article class="card"><h3>2. Design + sviluppo</h3><p>Costruisco un sito moderno, responsive e performante.</p></article>
+      <article class="card"><h3>3. Lancio</h3><p>Pubblicazione, SEO tecnica e monitoraggio conversioni.</p></article>
+    </div>
+  </section>
+
+  <section class="container" data-reveal>
+    <h2>{text.latestProjects}</h2>
+    <div class="project-list">
+      {projects.map((project) => <ProjectCard locale={locale} project={project} />)}
+    </div>
+    <p><a class="btn btn-link" href="/progetti">{text.viewAllProjects}</a></p>
+  </section>
+</BaseLayout>

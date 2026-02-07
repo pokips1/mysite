@@ -1,0 +1,16 @@
+---
+import type { Locale } from "../types/site";
+import { t } from "../i18n/ui";
+import { whatsappLink, mailtoLink } from "../config/links";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const text = t(locale);
+---
+<div class="cta-group">
+  <a class="btn btn-primary" href={whatsappLink(locale)} target="_blank" rel="noopener noreferrer" data-cta="whatsapp">{text.ctaWhatsapp}</a>
+  <a class="btn btn-secondary" href={mailtoLink()} data-cta="email">{text.ctaEmail}</a>
+</div>

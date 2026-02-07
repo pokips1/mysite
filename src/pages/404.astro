@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { createSeo } from "../config/seo";
+import { t } from "../i18n/ui";
+
+const locale = "it" as const;
+const text = t(locale);
+const seo = createSeo({
+  locale,
+  path: "/404",
+  title: "Pagina non trovata",
+  description: "La pagina richiesta non e disponibile.",
+  alternates: { it: "/", en: "/en" }
+});
+---
+<BaseLayout locale={locale} seo={seo}>
+  <section class="container hero">
+    <h1>{text.notFoundTitle}</h1>
+    <p><a class="btn btn-primary" href="/">{text.backHome}</a></p>
+  </section>
+</BaseLayout>

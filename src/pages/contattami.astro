@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CtaButtons from "../components/CtaButtons.astro";
+import { t } from "../i18n/ui";
+import { createSeo } from "../config/seo";
+import { CONTACT } from "../config/site";
+
+const locale = "it" as const;
+const text = t(locale);
+const seo = createSeo({
+  locale,
+  path: "/contattami",
+  title: "Contattami",
+  description: "Contattami su WhatsApp o email per ricevere una proposta per il tuo nuovo sito web statico.",
+  alternates: { it: "/contattami", en: "/en/contact" }
+});
+---
+<BaseLayout locale={locale} seo={seo}>
+  <section class="container hero" data-reveal>
+    <h1>{text.contactTitle}</h1>
+    <p>{text.contactLead}</p>
+    <CtaButtons locale={locale} />
+  </section>
+
+  <section class="container card" data-reveal>
+    <h2>{text.faqTitle}</h2>
+    <p><strong>Tempi medi:</strong> da 5 a 15 giorni lavorativi, in base alla complessita.</p>
+    <p><strong>Prezzo:</strong> progetti a partire da 600 EUR, con preventivo su obiettivi e scope.</p>
+    <p><strong>Email diretta:</strong> <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>
+  </section>
+</BaseLayout>

@@ -1,0 +1,31 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { t } from "../i18n/ui";
+import { createSeo } from "../config/seo";
+
+const locale = "it" as const;
+const text = t(locale);
+const projects = await getCollection("projects", ({ data }) => data.lang === "it");
+
+const seo = createSeo({
+  locale,
+  path: "/progetti",
+  title: "Progetti",
+  description: "Portfolio di siti web statici: stack, obiettivi e risultati misurabili.",
+  alternates: { it: "/progetti", en: "/en/projects" }
+});
+---
+<BaseLayout locale={locale} seo={seo}>
+  <section class="container hero" data-reveal>
+    <h1>{text.projectsTitle}</h1>
+    <p>{text.projectsLead}</p>
+  </section>
+
+  <section class="container" data-reveal>
+    <div class="project-list">
+      {projects.map((project) => <ProjectCard locale={locale} project={project} />)}
+    </div>
+  </section>
+</BaseLayout>

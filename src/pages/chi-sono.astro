@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CtaButtons from "../components/CtaButtons.astro";
+import { t } from "../i18n/ui";
+import { createSeo } from "../config/seo";
+
+const locale = "it" as const;
+const text = t(locale);
+const seo = createSeo({
+  locale,
+  path: "/chi-sono",
+  title: "Chi sono",
+  description: "Profilo, metodo di lavoro e competenze per realizzare siti statici moderni orientati ai risultati.",
+  alternates: { it: "/chi-sono", en: "/en/about" }
+});
+---
+<BaseLayout locale={locale} seo={seo}>
+  <section class="container hero" data-reveal>
+    <h1>{text.aboutTitle}</h1>
+    <p>{text.aboutLead}</p>
+  </section>
+
+  <section class="container" data-reveal>
+    <div class="grid grid-3">
+      <article class="card"><h2>Approccio</h2><p>Progetto ogni pagina per un obiettivo concreto: contatto, lead o prenotazione.</p></article>
+      <article class="card"><h2>Competenze</h2><p>HTML, CSS, JavaScript, Astro e Vite per siti statici veloci e affidabili.</p></article>
+      <article class="card"><h2>Metodo</h2><p>Struttura semplice, copy diretto, SEO tecnica e cura maniacale della UX mobile.</p></article>
+    </div>
+  </section>
+
+  <section class="container card" data-reveal>
+    <h2>Collaborazione</h2>
+    <p>Lavoro in modo trasparente: obiettivi chiari, tempi definiti e consegne iterative per ridurre rischi e accelerare il lancio.</p>
+    <CtaButtons locale={locale} />
+  </section>
+</BaseLayout>

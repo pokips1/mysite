@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="it"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="/_astro/chi-sono.B3Sj2KBq.css"></head>`n <link rel="icon" type="image/svg+xml" href="/favicon.svg">`n <meta name="theme-color" content="#0f766e"> <title>Chi sono | Mario Rossi</title> <meta name="description" content="Profilo, metodo di lavoro e competenze per realizzare siti statici moderni orientati ai risultati."> <link rel="canonical" href="https://pokips1.github.io/chi-sono">  <meta property="og:type" content="website"> <meta property="og:title" content="Chi sono | Mario Rossi"> <meta property="og:description" content="Profilo, metodo di lavoro e competenze per realizzare siti statici moderni orientati ai risultati."> <meta property="og:url" content="https://pokips1.github.io/chi-sono"> <meta property="og:image" content="https://pokips1.github.io/og-default.svg"> <meta name="twitter:card" content="summary_large_image"> <meta name="twitter:title" content="Chi sono | Mario Rossi"> <meta name="twitter:description" content="Profilo, metodo di lavoro e competenze per realizzare siti statici moderni orientati ai risultati."> <meta name="twitter:image" content="https://pokips1.github.io/og-default.svg"> <link rel="alternate" hreflang="it" href="https://pokips1.github.io/chi-sono"> <link rel="alternate" hreflang="en" href="https://pokips1.github.io/en/about"> <link rel="alternate" hreflang="x-default" href="https://pokips1.github.io/chi-sono"> <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Mario Rossi","description":"Siti web statici moderni, veloci e orientati alla conversione","areaServed":"Italy","serviceType":"Web design and static website development","email":"ciao@example.com","url":"https://pokips1.github.io/"}</script>  <script>
+      (() => {
+        const stored = localStorage.getItem("theme");
+        const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = stored === "light" || stored === "dark" ? stored : systemDark ? "dark" : "light";
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>  <header class="site-header"> <div class="container header-inner"> <a href="/" class="brand" aria-label="Mario Rossi">Mario Rossi</a> <nav aria-label="Navigazione principale" class="main-nav"> <a href="/">Home</a><a href="/chi-sono">Chi sono</a><a href="/progetti">Progetti</a><a href="/contattami">Contattami</a> </nav> <div class="header-actions"> <a class="lang-switch" href="/en">English</a> <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme"> <span aria-hidden="true">?</span> </button> </div> </div> </header> <main>  <section class="container hero" data-reveal> <h1>Chi sono</h1> <p>Aiuto professionisti e aziende a presentarsi online con siti veloci, chiari e orientati alla conversione.</p> </section> <section class="container" data-reveal> <div class="grid grid-3"> <article class="card"><h2>Approccio</h2><p>Progetto ogni pagina per un obiettivo concreto: contatto, lead o prenotazione.</p></article> <article class="card"><h2>Competenze</h2><p>HTML, CSS, JavaScript, Astro e Vite per siti statici veloci e affidabili.</p></article> <article class="card"><h2>Metodo</h2><p>Struttura semplice, copy diretto, SEO tecnica e cura maniacale della UX mobile.</p></article> </div> </section> <section class="container card" data-reveal> <h2>Collaborazione</h2> <p>Lavoro in modo trasparente: obiettivi chiari, tempi definiti e consegne iterative per ridurre rischi e accelerare il lancio.</p> <div class="cta-group"> <a class="btn btn-primary" href="https://wa.me/393400000000?text=Ciao%20Mario%2C%20vorrei%20informazioni%20per%20un%20sito%20web." target="_blank" rel="noopener noreferrer" data-cta="whatsapp">Scrivimi su WhatsApp</a> <a class="btn btn-secondary" href="mailto:ciao@example.com" data-cta="email">Inviami una mail</a> </div> </section>  </main> <footer class="site-footer"> <div class="container footer-inner"> <p>Siti statici ad alte prestazioni per professionisti e PMI.</p> <p>&copy; 2026 Mario Rossi</p> </div> </footer> <script>
+      (() => {
+        const toggle = document.querySelector("[data-theme-toggle]");
+        if (toggle) {
+          toggle.addEventListener("click", () => {
+            const current = document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+            const next = current === "dark" ? "light" : "dark";
+            document.documentElement.dataset.theme = next;
+            localStorage.setItem("theme", next);
+          });
+        }
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!reduceMotion) {
+          const reveals = document.querySelectorAll("[data-reveal]");
+          const io = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  io.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.12 }
+          );
+          reveals.forEach((el) => io.observe(el));
+        }
+
+        const ctas = document.querySelectorAll("[data-cta]");
+        ctas.forEach((el) => {
+          el.addEventListener("click", () => {
+            const eventName = `cta_${el.getAttribute("data-cta")}_click`;
+            if (typeof window.plausible === "function") {
+              window.plausible(eventName);
+            }
+          });
+        });
+      })();
+    </script> </html> 
